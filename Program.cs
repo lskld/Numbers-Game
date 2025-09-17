@@ -31,7 +31,7 @@ namespace NumbersGame
             if (userNum == randomNum)
             {
                 Console.WriteLine("Wohoo! Du klarade det!");
-                gameRounds = amountTries;
+                gameRounds = amountTries; //Avslutar while loopen i Gameplay();
                 Console.WriteLine("Vill du starta om spelet? (ja / nej)");
                 string restartQuestion = Console.ReadLine();
 
@@ -42,6 +42,7 @@ namespace NumbersGame
                 }
 
             }
+            // Kollar om användarens gissning är 2 eller mindre ifrån den genererade siffran.
             else if (((randomNum - userNum) <=2 && ((randomNum - userNum) > 0)) || ((userNum - randomNum) <= 2 && ((userNum - randomNum) > 0)))
             {
                 Console.WriteLine("Det var riktigt nära!");
@@ -84,16 +85,18 @@ namespace NumbersGame
                     break;
 
                 default:
-                    maxNumber = 26;
-                    Console.WriteLine("Ogiltig input! Vi har valt medelnivå åt dig. Jag tänker på ett nummer mellan 1 - 25 och du har 5 försök! Kör!");
+                    maxNumber = 26;                    
                     randomNumber = random.Next(1, maxNumber);
                     amountTries = 5;
+                    Console.WriteLine("Ogiltig input! Vi har valt medelnivå åt dig. Jag tänker på ett nummer mellan 1 - 25 och du har 5 försök! Kör!");
                     break;
             }
         }
 
         static void Gameplay()
         {
+            /*While loop som körs max så många försök som användaren har (amountTries) beroende på svårighetsgrad
+             *Felhantering, ökar endast gameRounds om användaren har matat in en siffra inom gränserna */
             while (gameRounds < amountTries)
             {
                 int userNumber;
@@ -105,7 +108,6 @@ namespace NumbersGame
                     CheckGuess(userNumber, randomNumber);
                     gameRounds++;
                 }
-
                 else if (convertInt && userNumber > maxNumber || userNumber < 1)
                 {
                     Console.WriteLine("Talet är utanför de tillåtna gränserna. Försök igen.");
@@ -124,7 +126,7 @@ namespace NumbersGame
                
                 if (restartQuestion == "nej")
                 {
-                    Console.WriteLine("Hejdå!");
+                    Console.WriteLine("Spelet avslutas. Välkommen åter.");
                     continueGame = false;
                 }
               
