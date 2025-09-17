@@ -1,4 +1,5 @@
-﻿using System;
+﻿//Theo Lilliesköld, NET25
+using System;
 
 namespace NumbersGame
 {
